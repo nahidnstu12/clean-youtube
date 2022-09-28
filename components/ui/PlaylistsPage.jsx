@@ -4,9 +4,9 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
-import InfoIcon from "@mui/icons-material/Info";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function PlaylistPage() {
   return (
@@ -30,14 +30,16 @@ export default function PlaylistPage() {
             actionIcon={
               <>
                 <IconButton
-                  sx={{ color: "rgba(255, 255, 255, 0.54)", "&:hover": { background: "green" } }}
+                  sx={{ color: "rgba(255, 255, 255, 0.54)", "&:hover": { background: "#cf1a1ad4" } }}
                   aria-label={`info about ${item.title}`}
+                 
                 >
                     {/* className="hover:border-red-500" */}
                   <FavoriteBorderIcon  />
                 </IconButton>
                 <IconButton
-                  sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                
+                  sx={{ color: "rgba(255, 255, 255, 0.54)" ,"&:hover": { background: "#85851b9e" }}}
                   aria-label={`info about ${item.title}`}
                 >
                   <DeleteForeverIcon />
