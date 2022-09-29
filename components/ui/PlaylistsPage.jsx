@@ -6,12 +6,12 @@ import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 export default function PlaylistPage() {
   return (
-    <ImageList>
-      <ImageListItem key="Subheader" cols={4}>
+    <ImageList gap={12}>
+      <ImageListItem key="Subheader" cols={3}>
         <ListSubheader component="div" classname="text-lg">
           Playlists{" "}
         </ListSubheader>
@@ -19,22 +19,29 @@ export default function PlaylistPage() {
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            src={`https://i.ytimg.com/vi/ewBBT6Iph0M/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBhFdnBSVfV6w5Zp0H-nufZ_8HoDg`}
+            srcSet={`https://i.ytimg.com/vi/ewBBT6Iph0M/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBhFdnBSVfV6w5Zp0H-nufZ_8HoDg`}
             alt={item.title}
             loading="lazy"
+            className="w-1/3"
           />
           <ImageListItemBar
             title={item.title}
             subtitle={item.author}
             actionIcon={
               <>
+              <IconButton
+                  sx={{ color: "rgba(255, 255, 255, 0.54)", "&:hover": { background: "#0754a0ba" } }}
+                  aria-label={`info about ${item.title}`}
+                 
+                >
+                  <PlayCircleOutlineIcon />
+                </IconButton>
                 <IconButton
                   sx={{ color: "rgba(255, 255, 255, 0.54)", "&:hover": { background: "#cf1a1ad4" } }}
                   aria-label={`info about ${item.title}`}
                  
                 >
-                    {/* className="hover:border-red-500" */}
                   <FavoriteBorderIcon  />
                 </IconButton>
                 <IconButton

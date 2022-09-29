@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,8 +7,19 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { useState } from "react";
+import Modal from "../shared/Modal";
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box className="">
       <AppBar position="static" className="bg-gray-300 ">
@@ -30,11 +40,12 @@ export default function Navbar() {
           >
             Clean Youtube
           </Typography>
-          <Button variant="outlined" startIcon={<PlaylistAddCircleIcon />}>
+          <Button variant="outlined" onClick={handleClickOpen} startIcon={<PlaylistAddCircleIcon />}>
             Add Playlist
           </Button>
         </Toolbar>
       </AppBar>
+      <Modal open={open} handleClose={handleClose} />
     </Box>
   );
 }
