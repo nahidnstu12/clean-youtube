@@ -10,7 +10,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import { useState } from "react";
 import Modal from "../shared/Modal";
 
-export default function Navbar() {
+export default function Navbar({getPlaylistVideos}) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -45,7 +45,7 @@ export default function Navbar() {
           </Button>
         </Toolbar>
       </AppBar>
-      <Modal open={open} handleClose={handleClose} />
+      <Modal open={open} handleClose={handleClose} getPlaylistVideos={getPlaylistVideos}/>
     </Box>
   );
 }

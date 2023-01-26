@@ -7,8 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import usePlaylists from "../../services/hooks/usePlaylists"
 
-export default function PlaylistPage() {
+export default function PlaylistPage({playlists}) {
+  // const {playlists} = usePlaylists()
+  console.log("playlists", playlists)
+  let playlistArr = Object.values(playlists)
   return (
     <ImageList gap={12}>
       <ImageListItem key="Subheader" cols={3}>
@@ -16,7 +20,7 @@ export default function PlaylistPage() {
           Playlists{" "}
         </ListSubheader>
       </ImageListItem>
-      {itemData.map((item) => (
+      {playlistArr?.map((item) => (
         <ImageListItem key={item.img}>
            {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

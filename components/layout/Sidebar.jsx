@@ -10,7 +10,7 @@ import ReceiptIcon from "@mui/icons-material/Receipt";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import PlaylistPage from "../ui/PlaylistsPage";
 
-export default function Sidebar() {
+export default function Sidebar({playlists}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -45,7 +45,7 @@ export default function Sidebar() {
         Home
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PlaylistPage />
+        <PlaylistPage playlists={playlists} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Favorites

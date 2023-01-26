@@ -2,28 +2,23 @@ import axios from "axios";
 import { useEffect } from "react";
 import Navbar from "../components/layout/Appbar";
 import Sidebar from "../components/layout/Sidebar";
+import { getPlaylist, getPlaylistItem } from "../services/api";
+import usePlaylist from "../services/hooks/usePlaylists";
 
 export default function Home() {
   let key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
   let pageToken = "";
-  let playlistId = "PL_XxuZqN0xVD0op-QDEgyXFA4fRPChvkl";
+  let playlistId = "PLpP9FLMkNf57Vzie8-t-87UQA0qWP_xPo";
+  const {getPlaylistVideos, playlists} = usePlaylist()
 
-  useEffect(() => {
-    async function getPlaylist() {
-      const URL = `https://www.googleapis.com/youtube/v3/playlistItems?key=${key}&part=id,contentDetails,snippet&maxResults=50&playlistId=${playlistId}&pageToken=${pageToken}`;
-
-      //
-      const { data } = await axios.get(URL);
-      console.log(data);
-    }
-    getPlaylist();
-
-    // const { data } = await axios.get(URL);
-  }, [key, pageToken, playlistId]);
+  // getPlaylistVideos('')
+  // console.log(playlists);
+  
+  
   return (
     <>
-      <Navbar />
-      <Sidebar />
+      <Navbar getPlaylistVideos={getPlaylistVideos}/>
+      <Sidebar getPlaylistVideos={getPlaylistVideos} playlists={playlists}/>
     </>
   );
 }
