@@ -18,6 +18,7 @@ export default function PlaylistPage() {
       </ImageListItem>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
+           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`https://i.ytimg.com/vi/ewBBT6Iph0M/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBhFdnBSVfV6w5Zp0H-nufZ_8HoDg`}
             srcSet={`https://i.ytimg.com/vi/ewBBT6Iph0M/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBhFdnBSVfV6w5Zp0H-nufZ_8HoDg`}
