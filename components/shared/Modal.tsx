@@ -8,7 +8,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
 
-export default function Modal({open, handleClose, getPlaylistVideos}) {
+interface IProps{
+  open:boolean;
+   handleClose: () => void;
+    getPlaylistVideos:any;
+}
+export default function Modal({open, handleClose, getPlaylistVideos}:IProps) {
  const [playlistId, setPlaylistId] = useState("")
  const closeModal = () => {
   handleClose()

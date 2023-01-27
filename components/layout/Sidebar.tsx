@@ -9,11 +9,14 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import PlaylistPage from "../ui/PlaylistsPage";
+interface IProps {
+  playlists:any;
+  getPlaylistVideos: any;
+}
+export default function Sidebar({playlists, getPlaylistVideos}:IProps) {
+  const [value, setValue] = React.useState<number>(0);
 
-export default function Sidebar({playlists}) {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
+  const handleChange = (event:any, newValue:number) => {
     setValue(newValue);
   };
 
@@ -60,7 +63,7 @@ export default function Sidebar({playlists}) {
   );
 }
 
-function TabPanel(props) {
+function TabPanel(props:any) {
   const { children, value, index, ...other } = props;
 
   return (

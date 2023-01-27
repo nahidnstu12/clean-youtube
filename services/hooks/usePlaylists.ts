@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react";
 import { getPlaylist } from "../api";
-
+interface IState{
+  playlists: {},
+  recent: [],
+  favorites: []
+}
 const usePlaylist = () => {
-  const [state, setState] = useState({
+  const [state, setState] = useState<IState>({
     playlists: {},
     recent: [],
     favorites: [],
   });
-  const [errors, setErrors] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   //   useEffect(() => {}, []);
 
-  const getPlaylistVideos = async (playlistId, force = false) => {
-    if (state.playlists[playlistId] && !force) return;
+  const getPlaylistVideos = async (playlistId:string, force = false) => {
+    // @ts-ignore
+    if (state.playlists[playlistId]  && !force) return;
 
     setLoading(true);
-    let result 
+    let result: any
     try {
       result = await getPlaylist(playlistId);
       setErrors("");
-    } catch (error) {
+    } catch (error:any) {
       console.log("Error", error?.response?.data?.error?.message);
       setErrors(error?.response?.data?.error?.message);
     } finally {
@@ -35,15 +40,15 @@ const usePlaylist = () => {
     }));
   };
 
-  const addRecentPlaylists = (playlistId) => {
-    setState((prev) => ({
+  const addRecentPlaylists = (playlistId:string) => {
+    setState((prev:any) => ({
       ...prev,
       recent: [playlistId, ...prev],
     }));
   };
 
-  const addFavoritePlaylists = (playlistId) => {
-    setState((prev) => ({
+  const addFavoritePlaylists = (playlistId:string) => {
+    setState((prev:any) => ({
       ...prev,
       favorites: [playlistId, ...prev],
     }));

@@ -1,8 +1,15 @@
 import axios from "axios";
+interface ItemProp{
+  (playlistId: string,
+  pageToken?:string,
+  result?: []):any
+}
+interface PlaylistProps{
 
+}
 const apikey_yt = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 
-export const getPlaylistItem = async (
+export const getPlaylistItem:ItemProp = async (
   playlistId,
   pageToken = "",
   result = []
@@ -10,7 +17,7 @@ export const getPlaylistItem = async (
   const URL = `https://www.googleapis.com/youtube/v3/playlistItems?key=${apikey_yt}&part=id,contentDetails,snippet&maxResults=50&playlistId=${playlistId}&pageToken=${pageToken}`;
 
   const { data } = await axios.get(URL);
-  result = [...result, ...data.items];
+  result = [...result, ...data.items] as [];
 //   console.log({ result });
   if (data.nextPageToken) {
     result = getPlaylistItem(playlistId, data?.nextPageToken, result);
@@ -19,7 +26,7 @@ export const getPlaylistItem = async (
   return result;
 };
 
-export const getPlaylist = async (playlistId) => {
+export const getPlaylist = async (playlistId:string) => {
     
   const URL = `https://www.googleapis.com/youtube/v3/playlists?key=${apikey_yt}&part=snippet&id=${playlistId}`;
   const { data } = await axios.get(URL);
@@ -32,7 +39,7 @@ export const getPlaylist = async (playlistId) => {
     channelTitle,
   } = data?.items[0]?.snippet;
 
-  playlistItems = playlistItems?.map((item) => {
+  playlistItems = playlistItems?.map((item:any) => {
     const {
       title,
       description,
