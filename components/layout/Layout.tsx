@@ -5,8 +5,8 @@ import Sidebar from "./Sidebar";
 export default function Layout() {
   return (
     <>
-      <Navbar />
-      <Sidebar />
+      {/* <Navbar />
+      <Sidebar /> */}
     </>
   );
 }
