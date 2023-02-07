@@ -28,27 +28,27 @@ export default function PlaylistPage({playlists}:IProps) {
         <ImageListItem key={item.img}>
            {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`https://i.ytimg.com/vi/ewBBT6Iph0M/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBhFdnBSVfV6w5Zp0H-nufZ_8HoDg`}
-            srcSet={`https://i.ytimg.com/vi/ewBBT6Iph0M/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBhFdnBSVfV6w5Zp0H-nufZ_8HoDg`}
-            alt={item.title}
+            // src={item?.playlistThumbnails?.url}
+            srcSet={item?.playlistThumbnails?.medium?.url}
+            alt={item?.playlistTitle}
             loading="lazy"
             className="w-1/3"
           />
           <ImageListItemBar
-            title={item.title}
-            subtitle={item.author}
+            title={item?.playlistTitle}
+            subtitle={item?.channelTitle}
             actionIcon={
               <>
               <IconButton
                   sx={{ color: "rgba(255, 255, 255, 0.54)", "&:hover": { background: "#0754a0ba" } }}
-                  aria-label={`info about ${item.title}`}
+                  aria-label={`info about ${item?.playlistTitle}`}
                  
                 >
                   <PlayCircleOutlineIcon />
                 </IconButton>
                 <IconButton
                   sx={{ color: "rgba(255, 255, 255, 0.54)", "&:hover": { background: "#cf1a1ad4" } }}
-                  aria-label={`info about ${item.title}`}
+                  aria-label={`info about ${item?.playlistTitle}`}
                  
                 >
                   <FavoriteBorderIcon  />
@@ -56,7 +56,7 @@ export default function PlaylistPage({playlists}:IProps) {
                 <IconButton
                 
                   sx={{ color: "rgba(255, 255, 255, 0.54)" ,"&:hover": { background: "#85851b9e" }}}
-                  aria-label={`info about ${item.title}`}
+                  aria-label={`info about ${item?.playlistTitle}`}
                 >
                   <DeleteForeverIcon />
                 </IconButton>

@@ -58,7 +58,7 @@ export const getPlaylist = async (playlistId:string) => {
     playlistId,
     playlistTitle,
     playlistDescription,
-    playlistThumbnails: thumbnails.default,
+    playlistThumbnails: thumbnails,
     channelTitle,
     playlistItems
   };
