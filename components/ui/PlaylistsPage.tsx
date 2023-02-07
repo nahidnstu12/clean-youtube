@@ -25,7 +25,7 @@ export default function PlaylistPage({playlists}:IProps) {
         </ListSubheader>
       </ImageListItem>
       {playlistArr?.map((item:any) => (
-        <ImageListItem key={item.img}>
+        <ImageListItem key={item?.id}>
            {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             // src={item?.playlistThumbnails?.url}
