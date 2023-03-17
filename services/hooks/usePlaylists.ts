@@ -1,19 +1,36 @@
 import { useEffect, useState } from "react";
+import storage from "services/utils/Storage";
 import { getPlaylist } from "../api";
 interface IState{
   playlists: {},
   recent: [],
   favorites: []
 }
+
+const INIT_DATA: IState = {
+  playlists: {},
+  recent: [],
+  favorites: [],
+}
+const STORAGE_KEY:string = 'yt__playlists'
 const usePlaylist = () => {
-  const [state, setState] = useState<IState>({
-    playlists: {},
-    recent: [],
-    favorites: [],
-  });
+  
+  const [state, setState] = useState<IState>(INIT_DATA);
   const [errors, setErrors] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  //   useEffect(() => {}, []);
+
+    useEffect(() => {
+      const data = storage.get(STORAGE_KEY);
+      if(data){
+        setState({...data})
+      }
+    }, []);
+
+    useEffect(()=> {
+      if(state !== INIT_DATA){
+        storage.save(STORAGE_KEY, state)
+      }
+    },[state])
 
   const getPlaylistVideos = async (playlistId:string, force = false) => {
     // @ts-ignore
