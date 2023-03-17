@@ -18,7 +18,6 @@ export const getPlaylistItem:ItemProp = async (
 
   const { data } = await axios.get(URL);
   result = [...result, ...data.items] as [];
-//   console.log({ result });
   if (data.nextPageToken) {
     result = getPlaylistItem(playlistId, data?.nextPageToken, result);
   }
