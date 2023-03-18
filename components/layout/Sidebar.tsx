@@ -8,15 +8,16 @@ import HomeIcon from "@mui/icons-material/Home";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import ArchiveIcon from "@mui/icons-material/Archive";
+import { SIDEBAR_ENUMS } from "../../services/utils/enums";
 import PlaylistPage from "../ui/PlaylistsPage";
 interface IProps {
-  playlists:any;
+  playlists: any;
   getPlaylistVideos: any;
 }
-export default function Sidebar({playlists, getPlaylistVideos}:IProps) {
-  const [value, setValue] = React.useState<number>(0);
+export default function Sidebar({ playlists, getPlaylistVideos }: IProps) {
+  const [value, setValue] = React.useState<number>(SIDEBAR_ENUMS.PLAYLISTS);
 
-  const handleChange = (event:any, newValue:number) => {
+  const handleChange = (event: any, newValue: number) => {
     setValue(newValue);
   };
 
@@ -36,49 +37,68 @@ export default function Sidebar({playlists, getPlaylistVideos}:IProps) {
         orientation="vertical"
         sx={{ borderRight: 1, borderColor: "divider", width: "200px" }}
       >
-        <Tab icon={<HomeIcon />} label="Home" className={`${value === 0 && "bg-blue-200"}`} />
-        <Tab icon={<PlaylistAddIcon />} label="Playlists" className={`${value === 1 && "bg-blue-200"}`}/>
-        <Tab icon={<FavoriteIcon />} label="Favorites" className={`${value === 2 && "bg-blue-200"}`}/>
-        <Tab icon={<ReceiptIcon />} label="Recents" className={`${value === 3 && "bg-blue-200"}`}/>
+        <Tab
+          icon={<HomeIcon />}
+          label="Home"
+          className={`${value === SIDEBAR_ENUMS.HOME && "bg-blue-200"}`}
+        />
+        <Tab
+          icon={<PlaylistAddIcon />}
+          label="Playlists"
+          className={`${value === SIDEBAR_ENUMS.PLAYLISTS && "bg-blue-200"}`}
+        />
+        <Tab
+          icon={<FavoriteIcon />}
+          label="Favorites"
+          className={`${value === SIDEBAR_ENUMS.FAVORITES && "bg-blue-200"}`}
+        />
+        <Tab
+          icon={<ReceiptIcon />}
+          label="Recent"
+          className={`${value === SIDEBAR_ENUMS.RECENT && "bg-blue-200"}`}
+        />
         {/* <Stack className={"absolute bottom-4 w-full"}> */}
-          <Tab icon={<ArchiveIcon />} label="Archived" className={`absolute bottom-4 w-full ${value === 4 && "bg-blue-200"}`}/>
+        <Tab
+          icon={<ArchiveIcon />}
+          label="Archived"
+          className={`absolute bottom-4 w-full ${
+            value === SIDEBAR_ENUMS.ARCHIVED && "bg-blue-200"
+          }`}
+        />
         {/* </Stack> */}
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={SIDEBAR_ENUMS.HOME}>
         Home
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={SIDEBAR_ENUMS.PLAYLISTS}>
         <PlaylistPage playlists={playlists} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={SIDEBAR_ENUMS.FAVORITES}>
         Favorites
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={SIDEBAR_ENUMS.RECENT}>
         Recent
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      <TabPanel value={value} index={SIDEBAR_ENUMS.ARCHIVED}>
         Archive
       </TabPanel>
     </Box>
   );
 }
 
-function TabPanel(props:any) {
+function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
+      sx={{ p: 3 }}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
+      {value === index && children}
+    </Box>
   );
 }
