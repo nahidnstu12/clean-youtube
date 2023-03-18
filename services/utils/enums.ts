@@ -1,0 +1,7 @@
+export enum SIDEBAR_ENUMS {
+  HOME,
+  PLAYLISTS,
+  FAVORITES,
+  RECENT,
+  ARCHIVED,
+}
