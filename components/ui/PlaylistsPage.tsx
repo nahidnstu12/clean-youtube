@@ -1,16 +1,14 @@
-import { Grid, Menu, MenuItem } from "@mui/material";
-import * as React from "react";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { MenuItem } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
-import IconButton from "@mui/material/IconButton";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import usePlaylists from "../../services/hooks/usePlaylists";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import InfoIcon from "@mui/icons-material/Info";
+import * as React from "react";
 import StyledMenu from "../shared/StyledMenu";
 
 interface IProps {
@@ -31,7 +29,7 @@ export default function PlaylistPage({ playlists }: IProps) {
     <ImageList gap={12}>
       <ImageListItem key="Subheader" cols={3}>
         {/* @ts-ignore */}
-        <ListSubheader component="div" classname="text-lg">
+        <ListSubheader component="div" className="text-lg">
           Playlists
         </ListSubheader>
       </ImageListItem>

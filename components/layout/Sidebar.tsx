@@ -1,25 +1,42 @@
-import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import ArchiveIcon from "@mui/icons-material/Archive";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Box, Stack } from "@mui/system";
-import { Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import ReceiptIcon from "@mui/icons-material/Receipt";
-import ArchiveIcon from "@mui/icons-material/Archive";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import { Box } from "@mui/system";
+import { useRouter } from "next/router";
+import * as React from "react";
+import { useEffect, useMemo } from "react";
 import { SIDEBAR_ENUMS } from "../../services/utils/enums";
 import PlaylistPage from "../ui/PlaylistsPage";
+
 interface IProps {
   playlists: any;
   getPlaylistVideos: any;
 }
 export default function Sidebar({ playlists, getPlaylistVideos }: IProps) {
-  const [value, setValue] = React.useState<number>(SIDEBAR_ENUMS.PLAYLISTS);
+  const router = useRouter();
+  const [value, setValue] = React.useState<number>(SIDEBAR_ENUMS.HOME);
+
+  const pageNames = useMemo(
+    () => ["home", "playlists", "favorites", "recent", "archived"],
+    []
+  );
 
   const handleChange = (event: any, newValue: number) => {
     setValue(newValue);
+
+    router.push(`?page=${pageNames[newValue]}`).then();
   };
+  console.log(router.query);
+  useEffect(() => {
+    const pageParams: string = router.query.page as string;
+    if (pageParams) {
+      setValue(pageNames.indexOf(pageParams));
+    }
+  }, [router, pageNames]);
 
   return (
     <Box
