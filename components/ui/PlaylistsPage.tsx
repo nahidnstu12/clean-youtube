@@ -8,6 +8,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
+import Link from "next/link";
 import * as React from "react";
 import StyledMenu from "../shared/StyledMenu";
 
@@ -34,36 +35,38 @@ export default function PlaylistPage({ playlists }: IProps) {
         </ListSubheader>
       </ImageListItem>
       {playlistArr?.map((item: any) => (
-        <ImageListItem key={item?.id}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item?.playlistThumbnails?.url}
-            srcSet={item?.playlistThumbnails?.medium?.url}
-            alt={item?.playlistTitle}
-            loading="lazy"
-            className="w-1/3"
-          />
-          <ImageListItemBar
-            title={item?.playlistTitle}
-            subtitle={item?.channelTitle}
-            actionIcon={
-              <>
-                <IconButton
-                  aria-label={`info about ${item?.playlistTitle}`}
-                  sx={{
-                    color: "rgba(255, 255, 255, 0.54)",
-                    background: "#0754a0ba",
-                    p: 1,
-                  }}
-                  onClick={handleClick}
-                >
-                  <MoreVertIcon />
-                  {/*<InfoIcon />*/}
-                </IconButton>
-              </>
-            }
-          />
-        </ImageListItem>
+        <Link href={`/playlists/${item?.playlistId}`} key={item?.playlistId}>
+          <ImageListItem>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={item?.playlistThumbnails?.url}
+              srcSet={item?.playlistThumbnails?.medium?.url}
+              alt={item?.playlistTitle}
+              loading="lazy"
+              className="w-1/3"
+            />
+            <ImageListItemBar
+              title={item?.playlistTitle}
+              subtitle={item?.channelTitle}
+              actionIcon={
+                <>
+                  <IconButton
+                    aria-label={`info about ${item?.playlistTitle}`}
+                    sx={{
+                      color: "rgba(255, 255, 255, 0.54)",
+                      background: "#0754a0ba",
+                      p: 1,
+                    }}
+                    onClick={handleClick}
+                  >
+                    <MoreVertIcon />
+                    {/*<InfoIcon />*/}
+                  </IconButton>
+                </>
+              }
+            />
+          </ImageListItem>
+        </Link>
       ))}
       <StyledMenu handleClose={handleClose} anchorEl={anchorEl} open={open}>
         <MenuItem onClick={handleClose}>

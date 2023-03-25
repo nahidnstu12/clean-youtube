@@ -40,7 +40,6 @@ export default function Modal({
             error={false}
             id="outlined-error-helper-text"
             label=""
-            // helperText="Incorrect entry."
             fullWidth
             value={playlistId}
             onChange={(evt) => setPlaylistId(evt.currentTarget.value)}

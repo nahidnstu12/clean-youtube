@@ -14,9 +14,8 @@ import PlaylistPage from "../ui/PlaylistsPage";
 
 interface IProps {
   playlists: any;
-  getPlaylistVideos: any;
 }
-export default function Sidebar({ playlists, getPlaylistVideos }: IProps) {
+export default function Sidebar({ playlists }: IProps) {
   const router = useRouter();
   const [value, setValue] = React.useState<number>(SIDEBAR_ENUMS.HOME);
 
@@ -30,7 +29,8 @@ export default function Sidebar({ playlists, getPlaylistVideos }: IProps) {
 
     router.push(`?page=${pageNames[newValue]}`).then();
   };
-  console.log(router.query);
+
+  // page persisted
   useEffect(() => {
     const pageParams: string = router.query.page as string;
     if (pageParams) {
