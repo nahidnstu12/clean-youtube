@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <Navbar getPlaylistVideos={getPlaylistVideos} />
+      {/*<Navbar getPlaylistVideos={getPlaylistVideos} />*/}
       <Sidebar playlists={playlists} />
     </>
   );
