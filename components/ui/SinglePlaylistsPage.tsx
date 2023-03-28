@@ -18,6 +18,7 @@ export default function SinglePlaylistsPage({
 }: ISinglePlaylistsPage) {
   const { playlists } = usePlaylist();
 
+  // @ts-ignore
   const items = playlists[playlistId];
 
   const [selectPlaylistItem, setSelectPlaylistItem] = useState<any>(null);

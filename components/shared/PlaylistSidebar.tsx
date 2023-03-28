@@ -6,7 +6,10 @@ export function PlaylistSidebar({ items }: IPlaylistSidebar) {
   return (
     <Box sx={{ height: "90vh", overflowY: "scroll" }}>
       {items?.playlistItems?.map((playlist: any) => (
-        <Typography key={playlist.id} sx={{ fontSize: "11px" }}>
+        <Typography
+          key={playlist?.contentDetails?.videoId}
+          sx={{ fontSize: "11px" }}
+        >
           {playlist?.title}
         </Typography>
       ))}
