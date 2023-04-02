@@ -11,10 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Modal from "../shared/Modal";
 
-interface IProps {
-  getPlaylistVideos: any;
-}
-export default function Navbar({ getPlaylistVideos }: IProps) {
+export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClickOpen = () => {
@@ -26,15 +23,14 @@ export default function Navbar({ getPlaylistVideos }: IProps) {
   };
   return (
     <Box className="">
-      <AppBar position="static" className="bg-gray-300 ">
+      <AppBar position="static" sx={{ background: "#eee" }}>
         <Toolbar className="mx-12 flex justify-between">
           <Link href={"/?page=home"}>
             <IconButton
               size="large"
               edge="start"
-              color="inherit"
               aria-label="menu"
-              className="mr-4 text-red-500 text-base"
+              sx={{ color: "#f00" }}
               disableRipple
               disableFocusRipple
             >
@@ -58,11 +54,7 @@ export default function Navbar({ getPlaylistVideos }: IProps) {
           </Button>
         </Toolbar>
       </AppBar>
-      <Modal
-        open={open}
-        handleClose={handleClose}
-        getPlaylistVideos={getPlaylistVideos}
-      />
+      <Modal open={open} handleClose={handleClose} />
     </Box>
   );
 }

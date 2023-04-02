@@ -12,10 +12,7 @@ import { useEffect, useMemo } from "react";
 import { SIDEBAR_ENUMS } from "../../services/utils/enums";
 import PlaylistPage from "../ui/PlaylistsPage";
 
-interface IProps {
-  playlists: any;
-}
-export default function Sidebar({ playlists }: IProps) {
+export default function Sidebar() {
   const router = useRouter();
   const [value, setValue] = React.useState<number>(SIDEBAR_ENUMS.HOME);
 
@@ -88,7 +85,7 @@ export default function Sidebar({ playlists }: IProps) {
         Home
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.PLAYLISTS}>
-        <PlaylistPage playlists={playlists} />
+        <PlaylistPage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.FAVORITES}>
         Favorites

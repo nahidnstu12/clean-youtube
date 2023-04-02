@@ -7,24 +7,22 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchPlaylist } from "../../redux/features/playlists";
 
 interface IProps {
   open: boolean;
   handleClose: () => void;
-  getPlaylistVideos: any;
 }
-export default function Modal({
-  open,
-  handleClose,
-  getPlaylistVideos,
-}: IProps) {
-  const [playlistId, setPlaylistId] = useState("");
+export default function Modal({ open, handleClose }: IProps) {
+  const [playlistId, setPlaylistId] = useState<string>("");
+  const dispatch = useDispatch();
   const closeModal = () => {
     handleClose();
     setPlaylistId("");
   };
-  const handleSubmit = () => {
-    getPlaylistVideos(playlistId);
+  const handleSubmit = async () => {
+    await dispatch(fetchPlaylist(playlistId));
     handleClose();
     setPlaylistId("");
   };
