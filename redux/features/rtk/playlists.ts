@@ -1,15 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPlaylist } from "../../services/api";
+import { getPlaylist } from "../../../services/api";
 
-interface IState {
-  data: {};
-  isLoading: boolean;
-  isSuccess: boolean;
-  isError: boolean;
-  error: string;
-}
-const initialState: IState = {
-  data: {},
+const initialState = {
+  playlists: {},
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -19,8 +12,9 @@ const initialState: IState = {
 // Async thunk
 export const fetchPlaylist = createAsyncThunk(
   "playlist/fetchPlaylist",
-  async (playlistId: string) => {
-    return await getPlaylist(playlistId);
+  async (playlistId) => {
+    const playlist = await getPlaylist(playlistId);
+    return playlist;
   }
 );
 
@@ -28,8 +22,8 @@ const playlistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {
-    deletePlaylist: (state: any, action: any) => {
-      delete state.data[action.payload];
+    deletePlaylist: (state, action) => {
+      delete state.playlists[action.payload];
     },
   },
   extraReducers: (builder) => {
@@ -37,14 +31,14 @@ const playlistSlice = createSlice({
       .addCase(fetchPlaylist.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchPlaylist.fulfilled, (state: IState, action: any) => {
+      .addCase(fetchPlaylist.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
         state.error = "";
-        state.data[action.payload.playlistId] = action.payload;
+        state.playlists = { ...state.playlists, ...action.payload };
       })
-      .addCase(fetchPlaylist.rejected, (state: IState, action: any) => {
+      .addCase(fetchPlaylist.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

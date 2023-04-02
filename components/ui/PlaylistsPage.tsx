@@ -10,12 +10,12 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import Link from "next/link";
 import * as React from "react";
+import { useSelector } from "react-redux";
 import StyledMenu from "../shared/StyledMenu";
 
-interface IProps {
-  playlists: any;
-}
-export default function PlaylistPage({ playlists }: IProps) {
+export default function PlaylistPage() {
+  const { data } = useSelector((state: any) => state.playlists);
+  console.log(data);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -24,8 +24,7 @@ export default function PlaylistPage({ playlists }: IProps) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // console.log("playlists", playlists);
-  let playlistArr = Object.values(playlists);
+  let playlistArr = Object.values(data);
   return (
     <ImageList gap={12}>
       <ImageListItem key="Subheader" cols={3}>
