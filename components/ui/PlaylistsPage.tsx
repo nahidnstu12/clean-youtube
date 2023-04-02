@@ -9,22 +9,36 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import Link from "next/link";
-import * as React from "react";
-import { useSelector } from "react-redux";
+import {useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavoritePlaylist } from "redux/features/favorites";
 import StyledMenu from "../shared/StyledMenu";
 
 export default function PlaylistPage() {
+  const dispatch = useDispatch();
   const { data } = useSelector((state: any) => state.playlists);
-  console.log(data);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [playlistId,setPlaylistId] = useState("")
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+
+  // convert to arr
+  let playlistArr = Object.values(data);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>, currentPlaylistId:string) => {
     setAnchorEl(event.currentTarget);
+    setPlaylistId(currentPlaylistId)
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
-  let playlistArr = Object.values(data);
+
+  const handleFav = () => {
+    dispatch(addFavoritePlaylist(playlistId))
+    handleClose()
+  }
+
+  
   return (
     <ImageList gap={12}>
       <ImageListItem key="Subheader" cols={3}>
@@ -34,44 +48,48 @@ export default function PlaylistPage() {
         </ListSubheader>
       </ImageListItem>
       {playlistArr?.map((item: any) => (
-        <Link href={`/playlists/${item?.playlistId}`} key={item?.playlistId}>
-          <ImageListItem>
+        // <Link href={`/playlists/${item?.playlistId}`} key={item?.playlistId}>
+        <ImageListItem>
+          <Link href={`/playlists/${item?.playlistId}`} >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={item?.playlistThumbnails?.url}
               srcSet={item?.playlistThumbnails?.medium?.url}
               alt={item?.playlistTitle}
               loading="lazy"
-              className="w-1/3"
+            // className="w-1/3"
             />
-            <ImageListItemBar
-              title={item?.playlistTitle}
-              subtitle={item?.channelTitle}
-              actionIcon={
-                <>
-                  <IconButton
-                    aria-label={`info about ${item?.playlistTitle}`}
-                    sx={{
-                      color: "rgba(255, 255, 255, 0.54)",
-                      background: "#0754a0ba",
-                      p: 1,
-                    }}
-                    onClick={handleClick}
-                  >
-                    <MoreVertIcon />
-                    {/*<InfoIcon />*/}
-                  </IconButton>
-                </>
-              }
-            />
-          </ImageListItem>
-        </Link>
+          </Link>
+
+          <ImageListItemBar
+            title={item?.playlistTitle}
+            subtitle={item?.channelTitle}
+            actionIcon={
+              <>
+                <IconButton
+                  aria-label={`info about ${item?.playlistTitle}`}
+                  sx={{
+                    color: "rgba(255, 255, 255, 0.54)",
+                    background: "#0754a0ba",
+                    p: 1,
+                  }}
+                  onClick={(e)=> handleClick(e, item?.playlistId)}
+                >
+                  <MoreVertIcon />
+                </IconButton>
+              </>
+            }
+          />
+        </ImageListItem>
+        // </Link>
       ))}
+
+
       <StyledMenu handleClose={handleClose} anchorEl={anchorEl} open={open}>
         <MenuItem onClick={handleClose}>
           <PlayCircleOutlineIcon sx={{ mr: 1 }} /> Play Tutorial
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleFav}>
           <FavoriteBorderIcon sx={{ mr: 1 }} /> Favorite Tutorial
         </MenuItem>
         <MenuItem onClick={handleClose}>

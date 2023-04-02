@@ -6,6 +6,7 @@ import ReceiptIcon from "@mui/icons-material/Receipt";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { Box } from "@mui/system";
+import FavoritesPage from "components/ui/FavoritesPage";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { useEffect, useMemo } from "react";
@@ -88,7 +89,7 @@ export default function Sidebar() {
         <PlaylistPage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.FAVORITES}>
-        Favorites
+        <FavoritesPage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.RECENT}>
         Recent
