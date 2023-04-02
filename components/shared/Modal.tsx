@@ -22,7 +22,6 @@ export default function Modal({ open, handleClose }: IProps) {
     setPlaylistId("");
   };
   const handleSubmit = async () => {
-    // getPlaylistVideos(playlistId);
     await dispatch(fetchPlaylist(playlistId));
     handleClose();
     setPlaylistId("");
