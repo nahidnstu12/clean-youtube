@@ -7,6 +7,7 @@ import ListSubheader from "@mui/material/ListSubheader";
 import Link from "next/link";
 import { useState, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteRecentPlaylist } from "redux/features/recents";
 import PlaylistCard from "../shared/PlaylistCard";
 
 const RecentPage = () => {
@@ -27,13 +28,18 @@ const RecentPage = () => {
     return data[playlist];
   });
 
+  const handleDelete = (e:any, playlistId: string) => {
+    if(confirm("Are you sure"))
+    dispatch(deleteRecentPlaylist(playlistId))
+  }
+
   console.log("playlistArr recent", playlistArr);
 
   return (
     <PlaylistCard
       title={"Recent"}
       playlistArr={playlistArr}
-      handleClick={handleClick}
+      handleClick={handleDelete}
       icon={<PlaylistRemoveIcon />}
     />
   );

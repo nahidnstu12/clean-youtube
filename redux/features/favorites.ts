@@ -20,7 +20,7 @@ const favoriteSlice = createSlice({
     initialState,
     reducers: {
         deleteFavoritePlaylist: (state: any, action: any) => {
-        delete state.items[action.payload];
+        state.items = state.items.filter((list:any)=> list !== action.payload)
       },
       addFavoritePlaylist: (state:any, action:any)=>{
         if(state.items.indexOf(action.payload) !== -1){

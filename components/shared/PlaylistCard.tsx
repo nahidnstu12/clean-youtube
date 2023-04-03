@@ -1,4 +1,4 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import IconButton from "@mui/material/IconButton";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -29,7 +29,7 @@ const PlaylistCard = ({ title, playlistArr, handleClick, icon }: IProps) => {
               srcSet={item?.playlistThumbnails?.medium?.url}
               alt={item?.playlistTitle}
               loading="lazy"
-              // style={{width: "33.3%"}}
+            // style={{width: "33.3%"}}
             />
           </Link>
 
@@ -37,19 +37,19 @@ const PlaylistCard = ({ title, playlistArr, handleClick, icon }: IProps) => {
             title={item?.playlistTitle}
             subtitle={item?.channelTitle}
             actionIcon={
-              <>
-                <IconButton
-                  aria-label={`info about ${item?.playlistTitle}`}
-                  sx={{
-                    color: "rgba(255, 255, 255, 0.54)",
-                    background: "#0754a0ba",
-                    p: 1,
-                  }}
-                  onClick={(e) => handleClick && handleClick(e, item?.playlistId)}
-                >
-                  {icon || <MoreVertIcon />}
-                </IconButton>
-              </>
+              icon &&
+              <IconButton
+                aria-label={`info about ${item?.playlistTitle}`}
+                sx={{
+                  color: "rgba(255, 255, 255, 0.54)",
+                  background: "#0754a0ba",
+                  p: 1,
+                }}
+                onClick={(e) => handleClick && handleClick(e, item?.playlistId)}
+              >
+                {icon}
+              </IconButton>
+
             }
           />
         </ImageListItem>

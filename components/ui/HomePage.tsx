@@ -8,6 +8,7 @@ import PlaylistCard from "components/shared/PlaylistCard";
 import Link from "next/link";
 import { useState, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteRecentPlaylist } from "redux/features/recents";
 import FavoritesPage from "./FavoritesPage";
 
 const HomePage = () => {
@@ -29,12 +30,13 @@ const HomePage = () => {
 
   let newPlaylistsArr = Object.values(data).slice(0, 3);
 
+
   console.log("playlistArr recent", favPlaylistArr);
 
   return <>
-  <PlaylistCard title="Favorite" playlistArr={favPlaylistArr} icon={<PlaylistRemoveIcon />} />
-  <PlaylistCard title="Recent" playlistArr={recentPlaylistArr} icon={<PlaylistRemoveIcon />} />
-  <PlaylistCard title="New Playlists" playlistArr={newPlaylistsArr} icon={<PlaylistRemoveIcon />} />
+  <PlaylistCard title="Favorite" playlistArr={favPlaylistArr}  />
+  <PlaylistCard title="Recent" playlistArr={recentPlaylistArr}  />
+  <PlaylistCard title="New Playlists" playlistArr={newPlaylistsArr}  />
   </>;
 };
 

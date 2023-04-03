@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoritePlaylist } from "../../redux/features/favorites";
+import { addFavoritePlaylist, deleteFavoritePlaylist } from "../../redux/features/favorites";
 import PlaylistCard from "../shared/PlaylistCard";
 import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
+import { deletePlaylist } from "redux/features/playlists";
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
@@ -34,9 +35,14 @@ const FavoritesPage = () => {
     handleClose();
   };
 
+  const handleDelete = (e:any, playlistId: string) => {
+    if(confirm("Are you sure"))
+    dispatch(deleteFavoritePlaylist(playlistId))
+  }
+
   console.log("playlistArr fab", playlistArr);
 
-  return <PlaylistCard title={"Favorite"} playlistArr={playlistArr} icon={<PlaylistRemoveIcon />} />;
+  return <PlaylistCard title={"Favorite"} playlistArr={playlistArr} icon={<PlaylistRemoveIcon />} handleClick={handleDelete} />;
 };
 
 export default FavoritesPage;

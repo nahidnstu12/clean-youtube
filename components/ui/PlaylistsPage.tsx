@@ -12,7 +12,9 @@ import ListSubheader from "@mui/material/ListSubheader";
 import Link from "next/link";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoritePlaylist } from "redux/features/favorites";
+import { addFavoritePlaylist, deleteFavoritePlaylist } from "redux/features/favorites";
+import { deletePlaylist } from "redux/features/playlists";
+import { deleteRecentPlaylist } from "redux/features/recents";
 import PlaylistCard from "../shared/PlaylistCard";
 import StyledMenu from "../shared/StyledMenu";
 
@@ -43,12 +45,21 @@ export default function PlaylistPage() {
     handleClose();
   };
 
+  const handleDelete = () => {
+    if(confirm("Are you sure"))
+    dispatch(deletePlaylist(playlistId))
+    dispatch(deleteFavoritePlaylist(playlistId))
+    dispatch(deleteRecentPlaylist(playlistId))
+    handleClose();
+  }
+
   return (
     <>
       <PlaylistCard
         title={"Playlists"}
         playlistArr={playlistArr}
         handleClick={handleClick}
+        icon={<MoreVertIcon />}
       />
 
       <StyledMenu handleClose={handleClose} anchorEl={anchorEl} open={open}>
@@ -58,7 +69,7 @@ export default function PlaylistPage() {
         <MenuItem onClick={handleFav}>
           <FavoriteBorderIcon sx={{ mr: 1 }} /> Favorite Tutorial
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleDelete}>
           <DeleteForeverIcon sx={{ mr: 1 }} />
           Delete Tutorial
         </MenuItem>
