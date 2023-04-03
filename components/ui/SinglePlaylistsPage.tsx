@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import usePlaylist from "../../services/hooks/usePlaylists";
+import { useDispatch, useSelector } from "react-redux";
+import { addRecentPlaylist } from "../../redux/features/recents";
 import { PlaylistNote } from "../shared/PlaylistNote";
 import { PlaylistSidebar } from "../shared/PlaylistSidebar";
 import { YoutubePlayer } from "../shared/YoutubePlayer";
@@ -16,14 +16,19 @@ interface ISinglePlaylistsPage {
 export default function SinglePlaylistsPage({
   playlistId,
 }: ISinglePlaylistsPage) {
-  const { playlists } = usePlaylist();
+  const dispatch = useDispatch();
+  const { data } = useSelector((state: any) => state.playlists);
 
   // @ts-ignore
-  const items = playlists[playlistId];
+  const items = data[playlistId];
 
   const [selectPlaylistItem, setSelectPlaylistItem] = useState<any>(null);
 
   useEffect(() => setSelectPlaylistItem(items?.playlistItems[0]), [items]);
+
+  useEffect(() => {
+    dispatch(addRecentPlaylist(playlistId));
+  }, [dispatch]);
 
   console.log("items: ", items, selectPlaylistItem);
 

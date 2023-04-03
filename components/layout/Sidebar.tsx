@@ -11,7 +11,9 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useEffect, useMemo } from "react";
 import { SIDEBAR_ENUMS } from "../../services/utils/enums";
+import HomePage from "../ui/HomePage";
 import PlaylistPage from "../ui/PlaylistsPage";
+import RecentPage from "../ui/RecentPage";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -76,14 +78,13 @@ export default function Sidebar() {
         <Tab
           icon={<ArchiveIcon />}
           label="Archived"
-          className={`absolute bottom-4 w-full ${
-            value === SIDEBAR_ENUMS.ARCHIVED && "bg-blue-200"
-          }`}
+          sx={{ position: "absolute", bottom: "10px", width: "100%" }}
+          className={`${value === SIDEBAR_ENUMS.ARCHIVED && "bg-blue-200"}`}
         />
         {/* </Stack> */}
       </Tabs>
       <TabPanel value={value} index={SIDEBAR_ENUMS.HOME}>
-        Home
+        <HomePage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.PLAYLISTS}>
         <PlaylistPage />
@@ -92,7 +93,7 @@ export default function Sidebar() {
         <FavoritesPage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.RECENT}>
-        Recent
+        <RecentPage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.ARCHIVED}>
         Archive
