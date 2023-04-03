@@ -5,49 +5,35 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoritePlaylist } from "../../redux/features/favorites";
 
-const FavoritesPage = () => {
+const RecentPage = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state?.favorites || []);
-  const { data } = useSelector((state) => state?.playlists || []);
+  const { items } = useSelector((state: any) => state?.recent || []);
+  const { data } = useSelector((state: any) => state?.playlists || []);
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [playlistId, setPlaylistId] = useState("");
-  const open = Boolean(anchorEl);
 
   const handleClick = (
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
     currentPlaylistId: string
   ) => {
-    setAnchorEl(event.currentTarget);
     setPlaylistId(currentPlaylistId);
   };
 
-  // let playlistArr = Object.values(data);
   let playlistArr = items?.map((playlist: any) => {
     return data[playlist];
   });
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleFav = () => {
-    dispatch(addFavoritePlaylist(playlistId));
-    handleClose();
-  };
-
-  console.log("playlistArr fab", playlistArr);
+  console.log("playlistArr recent", playlistArr);
 
   return (
     <ImageList gap={12}>
       <ImageListItem key="Subheader" cols={3}>
         {/* @ts-ignore */}
         <ListSubheader component="div" className="text-lg">
-          Favorite
+          Recent
         </ListSubheader>
       </ImageListItem>
       {playlistArr?.map((item: any) => (
@@ -60,7 +46,6 @@ const FavoritesPage = () => {
               srcSet={item?.playlistThumbnails?.medium?.url}
               alt={item?.playlistTitle}
               loading="lazy"
-              // className="w-1/3"
             />
           </Link>
 
@@ -90,4 +75,4 @@ const FavoritesPage = () => {
   );
 };
 
-export default FavoritesPage;
+export default RecentPage;
