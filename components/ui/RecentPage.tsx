@@ -34,6 +34,7 @@ const RecentPage = () => {
       title={"Recent"}
       playlistArr={playlistArr}
       handleClick={handleClick}
+      icon={<PlaylistRemoveIcon />}
     />
   );
 };

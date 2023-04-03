@@ -1,5 +1,6 @@
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import MoreVert from "@mui/icons-material/MoreVert";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { MenuItem } from "@mui/material";
@@ -45,7 +46,7 @@ export default function PlaylistPage() {
   return (
     <>
       <PlaylistCard
-        title={"Title"}
+        title={"Playlists"}
         playlistArr={playlistArr}
         handleClick={handleClick}
       />

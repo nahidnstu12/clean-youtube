@@ -9,8 +9,9 @@ interface IProps {
   title: string;
   playlistArr: any;
   handleClick?: (e: any, id: string) => void;
+  icon?: any;
 }
-const PlaylistCard = ({ title, playlistArr, handleClick }: IProps) => {
+const PlaylistCard = ({ title, playlistArr, handleClick, icon }: IProps) => {
   return (
     <ImageList gap={12}>
       <ImageListItem key="Subheader" cols={3}>
@@ -28,6 +29,7 @@ const PlaylistCard = ({ title, playlistArr, handleClick }: IProps) => {
               srcSet={item?.playlistThumbnails?.medium?.url}
               alt={item?.playlistTitle}
               loading="lazy"
+              // style={{width: "33.3%"}}
             />
           </Link>
 
@@ -43,9 +45,9 @@ const PlaylistCard = ({ title, playlistArr, handleClick }: IProps) => {
                     background: "#0754a0ba",
                     p: 1,
                   }}
-                  onClick={(e) => handleClick(e, item?.playlistId)}
+                  onClick={(e) => handleClick && handleClick(e, item?.playlistId)}
                 >
-                  <MoreVertIcon />
+                  {icon || <MoreVertIcon />}
                 </IconButton>
               </>
             }

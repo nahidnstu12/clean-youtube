@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavoritePlaylist } from "../../redux/features/favorites";
 import PlaylistCard from "../shared/PlaylistCard";
+import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const FavoritesPage = () => {
 
   console.log("playlistArr fab", playlistArr);
 
-  return <PlaylistCard title={"Favorite"} playlistArr={playlistArr} />;
+  return <PlaylistCard title={"Favorite"} playlistArr={playlistArr} icon={<PlaylistRemoveIcon />} />;
 };
 
 export default FavoritesPage;
