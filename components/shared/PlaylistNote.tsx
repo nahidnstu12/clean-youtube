@@ -1,15 +1,16 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography,Stack } from "@mui/material";
 import { styled } from "@mui/system";
 import { classes } from "../ui/SinglePlaylistsPage";
+import Subheader from "./Subheader"
 
 const StyledNoteBox = styled(Box)(({ theme }) => ({
   padding: "10px",
   position: "relative",
-  height: "90vh",
+  height: "85vh",
   [`& .${classes.note_textfield}`]: {
     position: "absolute",
     // bottom: "0px",
-    bottom: "30px",
+    bottom: "10px",
     left: 0,
     padding: "8px",
   },
@@ -17,7 +18,8 @@ const StyledNoteBox = styled(Box)(({ theme }) => ({
 export function PlaylistNote() {
   return (
     <>
-      <Typography>Notes</Typography>
+      {/* title */}
+      <Subheader title="Notes"/>
       <StyledNoteBox>
         <TextField
           className={classes.note_textfield}

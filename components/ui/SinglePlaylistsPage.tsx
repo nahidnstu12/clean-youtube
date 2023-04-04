@@ -23,21 +23,25 @@ export default function SinglePlaylistsPage({
   const items = data[playlistId];
 
   const [selectPlaylistItem, setSelectPlaylistItem] = useState<any>(null);
+  const [selectedVideoId, setSelectedVideoId] = useState<string>("");
 
-  useEffect(() => setSelectPlaylistItem(items?.playlistItems[0]), [items]);
+  useEffect(() => {
+    const selecetedVideoItems = items?.playlistItems?.find((playlist: any) => selectedVideoId ? playlist.contentDetails.videoId === selectedVideoId : {})
+    setSelectPlaylistItem(selecetedVideoItems)
+  }, [items, selectedVideoId]);
 
   useEffect(() => {
     dispatch(addRecentPlaylist(playlistId));
   }, [dispatch]);
 
-  console.log("items: ", items, selectPlaylistItem);
+  // console.log("items: ", items, selectPlaylistItem);
 
   return (
     <Grid container>
-      <Grid item md={3} sx={{ borderRight: "1px solid red" }}>
-        <PlaylistSidebar items={items} />
+      <Grid item md={3} >
+        <PlaylistSidebar items={items} selectedVideoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId} />
       </Grid>
-      <Grid item md={7} sx={{ borderRight: "1px solid red" }}>
+      <Grid item md={7} >
         <YoutubePlayer selectPlaylistItem={selectPlaylistItem} />
       </Grid>
       <Grid item md={2}>
