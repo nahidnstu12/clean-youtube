@@ -57,28 +57,39 @@ export default function Sidebar() {
         <Tab
           icon={<HomeIcon />}
           label="Home"
-          className={`${value === SIDEBAR_ENUMS.HOME && "bg-blue-200"}`}
+          sx={{ background: `${value === SIDEBAR_ENUMS.HOME && "#3b82f680"}` }}
         />
         <Tab
           icon={<PlaylistAddIcon />}
           label="Playlists"
-          className={`${value === SIDEBAR_ENUMS.PLAYLISTS && "bg-blue-200"}`}
+          sx={{
+            background: `${value === SIDEBAR_ENUMS.PLAYLISTS && "#3b82f680"}`,
+          }}
         />
         <Tab
           icon={<FavoriteIcon />}
           label="Favorites"
-          className={`${value === SIDEBAR_ENUMS.FAVORITES && "bg-blue-200"}`}
+          sx={{
+            background: `${value === SIDEBAR_ENUMS.FAVORITES && "#3b82f680"}`,
+          }}
         />
         <Tab
           icon={<ReceiptIcon />}
           label="Recent"
-          className={`${value === SIDEBAR_ENUMS.RECENT && "bg-blue-200"}`}
+          sx={{
+            background: `${value === SIDEBAR_ENUMS.RECENT && "#3b82f680"}`,
+          }}
         />
         {/* <Stack className={"absolute bottom-4 w-full"}> */}
         <Tab
           icon={<ArchiveIcon />}
           label="Archived"
-          sx={{ position: "absolute", bottom: "10px", width: "100%" }}
+          sx={{
+            position: "absolute",
+            bottom: "10px",
+            width: "100%",
+            background: `${value === SIDEBAR_ENUMS.ARCHIVED && "#3b82f680"}`,
+          }}
           className={`${value === SIDEBAR_ENUMS.ARCHIVED && "bg-blue-200"}`}
         />
         {/* </Stack> */}

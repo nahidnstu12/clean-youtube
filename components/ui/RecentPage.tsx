@@ -1,11 +1,5 @@
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
-import IconButton from "@mui/material/IconButton";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import ListSubheader from "@mui/material/ListSubheader";
-import Link from "next/link";
-import { useState, MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteRecentPlaylist } from "redux/features/recents";
 import PlaylistCard from "../shared/PlaylistCard";
