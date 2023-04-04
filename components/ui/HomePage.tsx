@@ -4,32 +4,40 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import ListSubheader from "@mui/material/ListSubheader";
+import PlaylistCard from "components/shared/PlaylistCard";
 import Link from "next/link";
 import { useState, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteRecentPlaylist } from "redux/features/recents";
 import FavoritesPage from "./FavoritesPage";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state: any) => state?.recent || []);
+  const { items: recentItems } = useSelector((state: any) => state?.recent || []);
+  const { items: favItems } = useSelector((state: any) => state?.favorites || []);
   const { data } = useSelector((state: any) => state?.playlists || []);
 
   const [playlistId, setPlaylistId] = useState("");
 
-  const handleClick = (
-    event: MouseEvent<HTMLElement>,
-    currentPlaylistId: string
-  ) => {
-    setPlaylistId(currentPlaylistId);
-  };
 
-  let playlistArr = items?.map((playlist: any) => {
+  let favPlaylistArr = favItems?.map((playlist: any) => {
     return data[playlist];
-  });
+  }).slice(0, 3);
 
-  console.log("playlistArr recent", playlistArr);
+  let recentPlaylistArr = recentItems?.map((playlist: any) => {
+    return data[playlist];
+  }).slice(0, 3);
 
-  return <FavoritesPage />;
+  let newPlaylistsArr = Object.values(data).slice(0, 3);
+
+
+  console.log("playlistArr recent", favPlaylistArr);
+
+  return <>
+  <PlaylistCard title="Favorite" playlistArr={favPlaylistArr}  />
+  <PlaylistCard title="Recent" playlistArr={recentPlaylistArr}  />
+  <PlaylistCard title="New Playlists" playlistArr={newPlaylistsArr}  />
+  </>;
 };
 
 export default HomePage;

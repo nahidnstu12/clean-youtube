@@ -20,7 +20,7 @@ const recentSlice = createSlice({
   initialState,
   reducers: {
     deleteRecentPlaylist: (state: any, action: any) => {
-      delete state.items[action.payload];
+      state.items = state.items.filter((list:any)=> list !== action.payload)
     },
     addRecentPlaylist: (state: any, action: any) => {
       if (state.items.indexOf(action.payload) !== -1) {

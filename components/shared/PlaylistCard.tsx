@@ -1,4 +1,4 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import IconButton from "@mui/material/IconButton";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -9,8 +9,9 @@ interface IProps {
   title: string;
   playlistArr: any;
   handleClick?: (e: any, id: string) => void;
+  icon?: any;
 }
-const PlaylistCard = ({ title, playlistArr, handleClick }: IProps) => {
+const PlaylistCard = ({ title, playlistArr, handleClick, icon }: IProps) => {
   return (
     <ImageList gap={12}>
       <ImageListItem key="Subheader" cols={3}>
@@ -28,6 +29,7 @@ const PlaylistCard = ({ title, playlistArr, handleClick }: IProps) => {
               srcSet={item?.playlistThumbnails?.medium?.url}
               alt={item?.playlistTitle}
               loading="lazy"
+            // style={{width: "33.3%"}}
             />
           </Link>
 
@@ -35,19 +37,19 @@ const PlaylistCard = ({ title, playlistArr, handleClick }: IProps) => {
             title={item?.playlistTitle}
             subtitle={item?.channelTitle}
             actionIcon={
-              <>
-                <IconButton
-                  aria-label={`info about ${item?.playlistTitle}`}
-                  sx={{
-                    color: "rgba(255, 255, 255, 0.54)",
-                    background: "#0754a0ba",
-                    p: 1,
-                  }}
-                  onClick={(e) => handleClick(e, item?.playlistId)}
-                >
-                  <MoreVertIcon />
-                </IconButton>
-              </>
+              icon &&
+              <IconButton
+                aria-label={`info about ${item?.playlistTitle}`}
+                sx={{
+                  color: "rgba(255, 255, 255, 0.54)",
+                  background: "#0754a0ba",
+                  p: 1,
+                }}
+                onClick={(e) => handleClick && handleClick(e, item?.playlistId)}
+              >
+                {icon}
+              </IconButton>
+
             }
           />
         </ImageListItem>
