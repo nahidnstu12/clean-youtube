@@ -1,12 +1,17 @@
-import { Box, List, ListItemButton, ListItemText, ListSubheader, Typography } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItemButton,
+  ListItemText,
+  ListSubheader,
+} from "@mui/material";
 import { Stack } from "@mui/system";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { useState } from "react";
 import Subheader from "./Subheader";
+
 interface IPlaylistSidebar {
   items: any;
   selectedVideoId: string;
-  setSelectedVideoId: (videoId:string) => void;
+  setSelectedVideoId: (videoId: string) => void;
 }
 export function PlaylistSidebar({ items, selectedVideoId, setSelectedVideoId }: IPlaylistSidebar) {
   

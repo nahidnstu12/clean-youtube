@@ -52,7 +52,13 @@ export default function Sidebar() {
         onChange={handleChange}
         aria-label="icon label tabs example"
         orientation="vertical"
-        sx={{ borderRight: 1, borderColor: "divider", width: "200px" }}
+        sx={{
+          borderRight: 1,
+          borderColor: "divider",
+          width: "200px",
+          // overflowY: "scroll",
+          // position: "fixed",
+        }}
       >
         <Tab
           icon={<HomeIcon />}

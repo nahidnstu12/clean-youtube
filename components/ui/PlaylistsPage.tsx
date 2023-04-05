@@ -1,15 +1,8 @@
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import MoreVert from "@mui/icons-material/MoreVert";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import { MenuItem } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import ListSubheader from "@mui/material/ListSubheader";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

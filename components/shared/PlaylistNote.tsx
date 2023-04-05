@@ -1,7 +1,7 @@
-import { Box, TextField, Typography,Stack } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { styled } from "@mui/system";
 import { classes } from "../ui/SinglePlaylistsPage";
-import Subheader from "./Subheader"
+import Subheader from "./Subheader";
 
 const StyledNoteBox = styled(Box)(({ theme }) => ({
   padding: "10px",
