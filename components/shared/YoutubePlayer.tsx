@@ -2,10 +2,12 @@ import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import ReactPlayer from "react-player";
 import { classes } from "../ui/SinglePlaylistsPage";
+import Subheader from "./Subheader";
 
 const StyledWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
   height: "380px",
+  padding: "6px",
 }));
 interface IYoutubePlayer {
   selectPlaylistItem: any;
@@ -14,7 +16,7 @@ export function YoutubePlayer({ selectPlaylistItem }: IYoutubePlayer) {
   console.log("selectPlaylistItem", selectPlaylistItem);
   return (
     <>
-      <Typography>React Player</Typography>
+      
       <StyledWrapper>
         <ReactPlayer
           className={classes.react_player}
@@ -28,9 +30,9 @@ export function YoutubePlayer({ selectPlaylistItem }: IYoutubePlayer) {
           }}
         />
       </StyledWrapper>
-      <Box sx={{ pt: "20px" }}>
-        <Typography>Description</Typography>
-        <Typography sx={{ fontSize: "11px" }}>
+      <Box sx={{ pt: "20px", height: "25vh", overflowY: "scroll" }}>
+      <Subheader title="Description"/>
+        <Typography sx={{ fontSize: "11px", color: "#444" }}>
           {selectPlaylistItem?.description}
         </Typography>
       </Box>

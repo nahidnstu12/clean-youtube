@@ -8,6 +8,7 @@ interface IState {
   isError: boolean;
   error: string;
 }
+
 const initialState: IState = {
   data: {},
   isLoading: false,
@@ -42,6 +43,7 @@ const playlistSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         state.error = "";
+        // @ts-ignore
         state.data[action.payload.playlistId] = action.payload;
       })
       .addCase(fetchPlaylist.rejected, (state: IState, action: any) => {

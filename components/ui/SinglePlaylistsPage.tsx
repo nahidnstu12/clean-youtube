@@ -10,9 +10,11 @@ export const classes = {
   react_player: "react-player",
   note_textfield: "note_textfield",
 };
+
 interface ISinglePlaylistsPage {
   playlistId: any;
 }
+
 export default function SinglePlaylistsPage({
   playlistId,
 }: ISinglePlaylistsPage) {
@@ -23,21 +25,36 @@ export default function SinglePlaylistsPage({
   const items = data[playlistId];
 
   const [selectPlaylistItem, setSelectPlaylistItem] = useState<any>(null);
-
-  useEffect(() => setSelectPlaylistItem(items?.playlistItems[0]), [items]);
+  const [selectedVideoId, setSelectedVideoId] = useState<string>("");
 
   useEffect(() => {
     dispatch(addRecentPlaylist(playlistId));
-  }, [dispatch]);
+  }, [dispatch, playlistId]);
 
-  console.log("items: ", items, selectPlaylistItem);
+  useEffect(() => {
+    if (!selectedVideoId) {
+      const firstVideoId = items?.playlistItems[0]?.contentDetails?.videoId;
+      setSelectedVideoId(firstVideoId);
+    }
+  }, []);
+
+  useEffect(() => {
+    const selecetedVideoItems = items?.playlistItems?.find((playlist: any) =>
+      selectedVideoId ? playlist.contentDetails.videoId === selectedVideoId : {}
+    );
+    setSelectPlaylistItem(selecetedVideoItems);
+  }, [items, selectedVideoId]);
 
   return (
     <Grid container>
-      <Grid item md={3} sx={{ borderRight: "1px solid red" }}>
-        <PlaylistSidebar items={items} />
+      <Grid item md={3}>
+        <PlaylistSidebar
+          items={items}
+          selectedVideoId={selectedVideoId}
+          setSelectedVideoId={setSelectedVideoId}
+        />
       </Grid>
-      <Grid item md={7} sx={{ borderRight: "1px solid red" }}>
+      <Grid item md>
         <YoutubePlayer selectPlaylistItem={selectPlaylistItem} />
       </Grid>
       <Grid item md={2}>
