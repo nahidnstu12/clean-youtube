@@ -10,9 +10,11 @@ export const classes = {
   react_player: "react-player",
   note_textfield: "note_textfield",
 };
+
 interface ISinglePlaylistsPage {
   playlistId: any;
 }
+
 export default function SinglePlaylistsPage({
   playlistId,
 }: ISinglePlaylistsPage) {
@@ -27,7 +29,7 @@ export default function SinglePlaylistsPage({
 
   useEffect(() => {
     dispatch(addRecentPlaylist(playlistId));
-  }, [dispatch]);
+  }, [dispatch, playlistId]);
 
   useEffect(() => {
     if (!selectedVideoId) {
@@ -43,8 +45,6 @@ export default function SinglePlaylistsPage({
     setSelectPlaylistItem(selecetedVideoItems);
   }, [items, selectedVideoId]);
 
-  // console.log("items: ", items, selectPlaylistItem);
-
   return (
     <Grid container>
       <Grid item md={3}>
@@ -54,7 +54,7 @@ export default function SinglePlaylistsPage({
           setSelectedVideoId={setSelectedVideoId}
         />
       </Grid>
-      <Grid item md={7}>
+      <Grid item md>
         <YoutubePlayer selectPlaylistItem={selectPlaylistItem} />
       </Grid>
       <Grid item md={2}>

@@ -7,16 +7,19 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { Stack } from "@mui/system";
 import Link from "next/link";
-import { useState, MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import Modal from "../shared/Modal";
+import ViewArrayIcon from "@mui/icons-material/ViewArray";
+import LayoutShape from "components/shared/LayoutShape";
 
 export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
   const [openLayout, setOpenLayout] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClickLayout = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setOpenLayout(true);
   };
@@ -56,21 +59,24 @@ export default function Navbar() {
               </Typography>
             </IconButton>
           </Link>
-          <Button
-            aria-describedby={"layout"}
-            variant="contained"
-            onClick={handleClick}
-          >
-            Open Popover
-          </Button>
+          <Stack spacing={2} direction="row">
+            <Button
+              aria-describedby={"layout"}
+              variant="outlined"
+              onClick={handleClickLayout}
+              startIcon={<ViewArrayIcon />}
+            >
+              Layout
+            </Button>
 
-          <Button
-            variant="outlined"
-            onClick={handleClickOpen}
-            startIcon={<PlaylistAddCircleIcon />}
-          >
-            Add Playlist
-          </Button>
+            <Button
+              variant="outlined"
+              onClick={handleClickOpen}
+              startIcon={<PlaylistAddCircleIcon />}
+            >
+              Add Playlist
+            </Button>
+          </Stack>
         </Toolbar>
       </AppBar>
       <Modal open={open} handleClose={handleClose} />
@@ -78,13 +84,13 @@ export default function Navbar() {
         id={"layout"}
         open={openLayout}
         anchorEl={anchorEl}
-        onClose={handleClose}
+        onClose={handleClose2}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "left",
         }}
       >
-        <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+        <LayoutShape />
       </Popover>
     </Box>
   );
