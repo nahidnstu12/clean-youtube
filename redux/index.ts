@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import playlistReducer from "./features/playlists";
 import favoriteReducer from "./features/favorites";
 import recentReducer from "./features/recents";
+import noteReducer from "./features/notes";
 
 const persistConfig = {
   key: "root",
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   // videos: videosReducer,
   favorites: favoriteReducer,
   recent: recentReducer,
+  note: noteReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

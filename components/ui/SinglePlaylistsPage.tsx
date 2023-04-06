@@ -19,6 +19,7 @@ export default function SinglePlaylistsPage({
   playlistId,
 }: ISinglePlaylistsPage) {
   const dispatch = useDispatch();
+
   const { data } = useSelector((state: any) => state.playlists);
 
   // @ts-ignore
