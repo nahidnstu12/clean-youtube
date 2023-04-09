@@ -8,6 +8,11 @@ import {
 import { Stack } from "@mui/system";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+  toggleLayoutDescription,
+  toggleLayoutSidebar,
+} from "../../redux/features/Layout";
 import { urlParamsUpdate } from "../../services/utils/utils";
 import Subheader from "./Subheader";
 
@@ -22,6 +27,10 @@ export function PlaylistSidebar({
   setSelectedVideoId,
 }: IPlaylistSidebar) {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(toggleLayoutSidebar(false));
+  };
 
   useEffect(() => {
     const videoId = items?.playlistItems[0]?.contentDetails?.videoId;
@@ -49,7 +58,7 @@ export function PlaylistSidebar({
         aria-label="single playlist sidebar"
         subheader={
           <ListSubheader component="div" id="title">
-            <Subheader title="Playlist Sidebar" />
+            <Subheader title="Playlist Sidebar" handleClick={handleClick} />
           </ListSubheader>
         }
       >

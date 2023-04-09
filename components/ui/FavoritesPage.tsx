@@ -1,5 +1,6 @@
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { deleteFavoritePlaylist } from "../../redux/features/favorites";
 import PlaylistCard from "../shared/PlaylistCard";
 
@@ -13,7 +14,10 @@ const FavoritesPage = () => {
   });
 
   const handleDelete = (e: any, playlistId: string) => {
-    if (confirm("Are you sure")) dispatch(deleteFavoritePlaylist(playlistId));
+    if (confirm("Are you sure")) {
+      dispatch(deleteFavoritePlaylist(playlistId));
+      toast.warn("Delete From Favorite Playlist!");
+    }
   };
 
   console.log("playlistArr fab", playlistArr);

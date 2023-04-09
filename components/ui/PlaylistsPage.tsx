@@ -6,6 +6,7 @@ import { MenuItem } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   addFavoritePlaylist,
   deleteFavoritePlaylist,
@@ -41,13 +42,17 @@ export default function PlaylistPage() {
   const handleFav = () => {
     dispatch(addFavoritePlaylist(playlistId));
     handleClose();
+    toast.success("Successfully Added To Favorite!");
   };
 
   const handlePlaylistDelete = () => {
-    if (confirm("Are you sure")) dispatch(deletePlaylist(playlistId));
-    dispatch(deleteFavoritePlaylist(playlistId));
-    dispatch(deleteRecentPlaylist(playlistId));
-    handleClose();
+    if (confirm("Are you sure")) {
+      dispatch(deletePlaylist(playlistId));
+      dispatch(deleteFavoritePlaylist(playlistId));
+      dispatch(deleteRecentPlaylist(playlistId));
+      handleClose();
+      toast.warn("Delete From Playlist!");
+    }
   };
 
   const handleSinglePlaylistPage = () => {

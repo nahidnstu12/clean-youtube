@@ -9,16 +9,20 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { MouseEvent, useState } from "react";
+import { useSelector } from "react-redux";
 import Modal from "../shared/Modal";
 import ViewArrayIcon from "@mui/icons-material/ViewArray";
 import LayoutShape from "components/shared/LayoutShape";
 
 export default function Navbar() {
+  const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const [openLayout, setOpenLayout] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
+  const { data } = useSelector((state: any) => state.playlists);
+  let playlistArr = Object.values(data);
   const handleClickLayout = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setOpenLayout(true);
@@ -60,18 +64,21 @@ export default function Navbar() {
             </IconButton>
           </Link>
           <Stack spacing={2} direction="row">
-            <Button
-              aria-describedby={"layout"}
-              variant="outlined"
-              onClick={handleClickLayout}
-              startIcon={<ViewArrayIcon />}
-            >
-              Layout
-            </Button>
+            {router.query.playlistId && (
+              <Button
+                aria-describedby={"layout"}
+                variant="outlined"
+                onClick={handleClickLayout}
+                startIcon={<ViewArrayIcon />}
+              >
+                Layout
+              </Button>
+            )}
 
             <Button
               variant="outlined"
               onClick={handleClickOpen}
+              disabled={playlistArr.length >= 6}
               startIcon={<PlaylistAddCircleIcon />}
             >
               Add Playlist

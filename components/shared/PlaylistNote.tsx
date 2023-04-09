@@ -3,6 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/system";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleLayoutNotes } from "../../redux/features/Layout";
 import {
   addNotePlaylist,
   deleteNoteFromPlaylist,
@@ -32,9 +33,12 @@ interface IButton {
 export function PlaylistNote() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [noteText, setNoteText] = useState("");
+
   const { data } = useSelector((state: any) => state.note);
+
+  const [noteText, setNoteText] = useState("");
   const [confirmDelete, setConfirmDelete] = useState(0);
+
   const videoId = router.query.videoId as string;
   const playlistId = router.query.playlistId as string;
 
@@ -89,11 +93,14 @@ export function PlaylistNote() {
       dispatch(deleteNoteFromPlaylist(noteObj));
     }
   };
+  const handleCLick = () => {
+    dispatch(toggleLayoutNotes(false));
+  };
 
   return (
     <>
       {/* title */}
-      <Subheader title="Notes" />
+      <Subheader title="Notes" handleClick={handleCLick} />
       <StyledNoteBox>
         <List
           sx={{

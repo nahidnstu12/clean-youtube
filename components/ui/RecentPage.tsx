@@ -1,6 +1,7 @@
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import { MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { deleteRecentPlaylist } from "redux/features/recents";
 import PlaylistCard from "../shared/PlaylistCard";
 
@@ -11,21 +12,16 @@ const RecentPage = () => {
 
   const [playlistId, setPlaylistId] = useState("");
 
-  const handleClick = (
-    event: MouseEvent<HTMLElement>,
-    currentPlaylistId: string
-  ) => {
-    setPlaylistId(currentPlaylistId);
-  };
-
   let playlistArr = items?.map((playlist: any) => {
     return data[playlist];
   });
 
-  const handleDelete = (e:any, playlistId: string) => {
-    if(confirm("Are you sure"))
-    dispatch(deleteRecentPlaylist(playlistId))
-  }
+  const handleDelete = (e: any, playlistId: string) => {
+    if (confirm("Are you sure")) {
+      dispatch(deleteRecentPlaylist(playlistId));
+      toast.warn("Delete From Recent Playlist!");
+    }
+  };
 
   console.log("playlistArr recent", playlistArr);
 
