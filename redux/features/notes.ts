@@ -19,19 +19,36 @@ const noteSlice = createSlice({
   name: "note",
   initialState,
   reducers: {
-    // deletenotePlaylist: (state: any, action: any) => {
-    //   state.data = state.data.filter((list: any) => list !== action.payload);
-    // },
-    addNotePlaylist: (state: any, action: any) => {
-      if (state.data.indexOf(action.payload) !== -1) {
-        return;
+    deleteNoteFromPlaylist: (state: any, action: any) => {
+      let playlistId = action.payload.playlistId;
+      let videoId = action.payload.videoId;
+      if (action.payload.noteIndex >= 0) {
+        state.data[playlistId][videoId]?.splice(action.payload.noteIndex, 1);
       }
-      // @ts-ignore
-      state.data?.[action.payload.playlistId][action.payload.videoId] =
-        action.payload.note;
+    },
+    addNotePlaylist: (state: any, action: any) => {
+      let playlistId = action.payload.playlistId;
+      let videoId = action.payload.videoId;
+
+      console.log({ playlistId, videoId });
+
+      if (state.data[playlistId]) {
+        if (state.data[playlistId][videoId]) {
+          state.data[playlistId][videoId] = [
+            action.payload.note,
+            ...state.data[playlistId][videoId],
+          ];
+        } else {
+          state.data[playlistId][videoId] = [action.payload.note];
+        }
+      } else {
+        state.data[playlistId] = {};
+        state.data[playlistId][videoId] = [action.payload.note];
+      }
+      // state.data = {};
     },
   },
 });
 
-export const { addNotePlaylist } = noteSlice.actions;
+export const { addNotePlaylist, deleteNoteFromPlaylist } = noteSlice.actions;
 export default noteSlice.reducer;

@@ -25,10 +25,12 @@ export function PlaylistSidebar({
 
   useEffect(() => {
     const videoId = items?.playlistItems[0]?.contentDetails?.videoId;
-    urlParamsUpdate(router, {
-      playlistId: router.query.playlistId,
-      videoId,
-    });
+    if (videoId) {
+      urlParamsUpdate(router, {
+        playlistId: router.query.playlistId,
+        videoId,
+      });
+    }
   }, []);
 
   const handleListItemClick = (event: any, videoId: string) => {
