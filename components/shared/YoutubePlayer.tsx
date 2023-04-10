@@ -2,10 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  toggleLayoutDescription,
-  toggleLayoutNotes,
-} from "../../redux/features/Layout";
+import { toggleLayoutDescription } from "../../redux/features/Layout";
 import { LAYOUT } from "../../services/utils/enums";
 import { classes } from "../ui/SinglePlaylistsPage";
 import Subheader from "./Subheader";
@@ -31,6 +28,7 @@ export function YoutubePlayer({ selectPlaylistItem }: IYoutubePlayer) {
           className={classes.react_player}
           width="100%"
           height="100%"
+          controls
           url={`https://www.youtube.com/watch?v=${selectPlaylistItem?.contentDetails?.videoId}`}
           config={{
             youtube: {

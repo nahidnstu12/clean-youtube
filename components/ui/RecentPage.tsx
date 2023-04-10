@@ -1,5 +1,4 @@
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
-import { MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { deleteRecentPlaylist } from "redux/features/recents";
@@ -10,7 +9,6 @@ const RecentPage = () => {
   const { items } = useSelector((state: any) => state?.recent || []);
   const { data } = useSelector((state: any) => state?.playlists || []);
 
-  const [playlistId, setPlaylistId] = useState("");
 
   let playlistArr = items?.map((playlist: any) => {
     return data[playlist];
@@ -23,7 +21,6 @@ const RecentPage = () => {
     }
   };
 
-  console.log("playlistArr recent", playlistArr);
 
   return (
     <PlaylistCard

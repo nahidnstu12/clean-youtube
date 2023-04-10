@@ -20,8 +20,6 @@ const FavoritesPage = () => {
     }
   };
 
-  console.log("playlistArr fab", playlistArr);
-
   return (
     <PlaylistCard
       title={"Favorite"}

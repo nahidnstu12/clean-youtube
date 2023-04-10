@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchPlaylist } from "../../redux/features/playlists";
 

@@ -24,16 +24,6 @@ const layoutSlice = createSlice({
   name: "layout",
   initialState,
   reducers: {
-    // deleteLayoutPlaylist: (state: any, action: any) => {
-    //     state.items = state.items.filter((list:any)=> list !== action.payload)
-    // },
-    // addLayoutPlaylist: (state:any, action:any)=>{
-    //     if(state.items.indexOf(action.payload) !== -1){
-    //         return;
-    //     }
-    //     state.items.push(action.payload)
-    // }
-    changeLayout: (state: any, action: any) => {},
     toggleLayoutSidebar: (state: any, action: any) => {
       state.data[LAYOUT.SIDEBAR] = action.payload;
     },

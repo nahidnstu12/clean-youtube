@@ -23,7 +23,6 @@ export default function SinglePlaylistsPage({
 
   const { data } = useSelector((state: any) => state.playlists);
   const { data: layout } = useSelector((state: any) => state.layout);
-  console.log("layout", layout);
 
   // @ts-ignore
   const items = data[playlistId];

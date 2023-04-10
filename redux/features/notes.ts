@@ -30,8 +30,6 @@ const noteSlice = createSlice({
       let playlistId = action.payload.playlistId;
       let videoId = action.payload.videoId;
 
-      console.log({ playlistId, videoId });
-
       if (state.data[playlistId]) {
         if (state.data[playlistId][videoId]) {
           state.data[playlistId][videoId] = [
