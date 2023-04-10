@@ -91,6 +91,7 @@ export function PlaylistNote() {
       };
 
       dispatch(deleteNoteFromPlaylist(noteObj));
+      setConfirmDelete(0);
     }
   };
   const handleCLick = () => {
