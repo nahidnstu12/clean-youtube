@@ -1,6 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import ReactPlayer from "react-player";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  toggleLayoutDescription,
+  toggleLayoutNotes,
+} from "../../redux/features/Layout";
+import { LAYOUT } from "../../services/utils/enums";
 import { classes } from "../ui/SinglePlaylistsPage";
 import Subheader from "./Subheader";
 
@@ -13,10 +19,13 @@ interface IYoutubePlayer {
   selectPlaylistItem: any;
 }
 export function YoutubePlayer({ selectPlaylistItem }: IYoutubePlayer) {
-  console.log("selectPlaylistItem", selectPlaylistItem);
+  const { data: layout } = useSelector((state: any) => state.layout);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(toggleLayoutDescription(false));
+  };
   return (
     <>
-      
       <StyledWrapper>
         <ReactPlayer
           className={classes.react_player}
@@ -30,12 +39,14 @@ export function YoutubePlayer({ selectPlaylistItem }: IYoutubePlayer) {
           }}
         />
       </StyledWrapper>
-      <Box sx={{ pt: "20px", height: "25vh", overflowY: "scroll" }}>
-      <Subheader title="Description"/>
-        <Typography sx={{ fontSize: "11px", color: "#444" }}>
-          {selectPlaylistItem?.description}
-        </Typography>
-      </Box>
+      {layout[LAYOUT.DESCRIPTION] && (
+        <Box sx={{ pt: "20px", height: "25vh", overflowY: "scroll" }}>
+          <Subheader title="Description" handleClick={handleClick} />
+          <Typography sx={{ fontSize: "11px", color: "#444" }}>
+            {selectPlaylistItem?.description}
+          </Typography>
+        </Box>
+      )}
     </>
   );
 }

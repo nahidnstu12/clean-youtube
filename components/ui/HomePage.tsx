@@ -28,8 +28,6 @@ const HomePage = () => {
 
   let newPlaylistsArr = Object.values(data).slice(0, 3);
 
-  console.log("playlistArr recent", favPlaylistArr);
-
   return (
     <>
       <PlaylistCard title="Favorite" playlistArr={favPlaylistArr} />

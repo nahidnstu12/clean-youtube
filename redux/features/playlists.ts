@@ -20,8 +20,20 @@ const initialState: IState = {
 // Async thunk
 export const fetchPlaylist = createAsyncThunk(
   "playlist/fetchPlaylist",
-  async (playlistId: string) => {
-    return await getPlaylist(playlistId);
+  async (playlistId: string, { getState, rejectWithValue }) => {
+    const state = getState();
+
+    try {
+      // @ts-ignore
+      if (state.playlists.data[playlistId]) {
+        return;
+      }
+      return await getPlaylist(playlistId);
+    } catch (err) {
+      console.log("thunk", err);
+      // @ts-ignore
+      // return rejectWithValue(err?.response?.data?.error?.message);
+    }
   }
 );
 
@@ -50,7 +62,10 @@ const playlistSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.error = action?.error?.message;
+        state.error =
+          action?.error?.response?.data?.error?.message ||
+          action?.error?.message ||
+          "Something went wrong!!!!!";
       });
   },
 });

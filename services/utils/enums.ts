@@ -5,3 +5,9 @@ export enum SIDEBAR_ENUMS {
   RECENT,
   ARCHIVED,
 }
+
+export enum LAYOUT {
+  SIDEBAR = "Sidebar",
+  DESCRIPTION = "Description",
+  NOTES = "Notes",
+}

@@ -5,9 +5,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { fetchPlaylist } from "../../redux/features/playlists";
 
 interface IProps {
@@ -17,14 +19,30 @@ interface IProps {
 export default function Modal({ open, handleClose }: IProps) {
   const [playlistId, setPlaylistId] = useState<string>("");
   const dispatch = useDispatch();
+  const router = useRouter();
   const closeModal = () => {
     handleClose();
     setPlaylistId("");
   };
   const handleSubmit = async () => {
-    await dispatch(fetchPlaylist(playlistId));
-    handleClose();
-    setPlaylistId("");
+    let extractPlaylistId = playlistId.split("=");
+    let pid =
+      extractPlaylistId?.length == 1
+        ? extractPlaylistId[0]
+        : extractPlaylistId[1];
+    if (playlistId && extractPlaylistId) {
+      try {
+        await dispatch(fetchPlaylist(pid));
+        handleClose();
+        setPlaylistId("");
+        router.push("/?page=playlists");
+        toast.success("Success Playlist Added!");
+      } catch (err) {
+        toast.error("Playlist not found or already added!!");
+        handleClose();
+        setPlaylistId("");
+      }
+    }
   };
   return (
     <div>

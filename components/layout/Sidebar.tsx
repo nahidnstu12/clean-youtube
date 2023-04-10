@@ -113,7 +113,7 @@ export default function Sidebar() {
         <RecentPage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.ARCHIVED}>
-        Archive
+        Upcoming Features
       </TabPanel>
     </Box>
   );
