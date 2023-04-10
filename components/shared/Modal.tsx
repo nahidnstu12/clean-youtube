@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchPlaylist } from "../../redux/features/playlists";
 
@@ -31,11 +31,17 @@ export default function Modal({ open, handleClose }: IProps) {
         ? extractPlaylistId[0]
         : extractPlaylistId[1];
     if (playlistId && extractPlaylistId) {
-      await dispatch(fetchPlaylist(pid));
-      handleClose();
-      setPlaylistId("");
-      router.push("/?page=playlists");
-      toast.success("Success Playlist Added!");
+      try {
+        await dispatch(fetchPlaylist(pid));
+        handleClose();
+        setPlaylistId("");
+        router.push("/?page=playlists");
+        toast.success("Success Playlist Added!");
+      } catch (err) {
+        toast.error("Playlist not found or already added!!");
+        handleClose();
+        setPlaylistId("");
+      }
     }
   };
   return (
