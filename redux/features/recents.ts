@@ -32,7 +32,6 @@ const recentSlice = createSlice({
         state.items.splice(5, state.items.length);
       }
       state.items = state.items.filter((item: string) => item);
-      // state.items = [null, ...state.items];
     },
   },
 });

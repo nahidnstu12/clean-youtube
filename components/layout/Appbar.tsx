@@ -41,9 +41,11 @@ export default function Navbar() {
     setOpen(false);
   };
   return (
-    <Box className="">
+    <Box>
       <AppBar position="static" sx={{ background: "#eee" }}>
-        <Toolbar className="mx-12 flex justify-between">
+        <Toolbar
+          sx={{ mx: "3rem", display: "flex", justifyContent: "space-between" }}
+        >
           <Link href={"/?page=home"}>
             <IconButton
               size="large"
@@ -57,7 +59,12 @@ export default function Navbar() {
               <Typography
                 variant="h6"
                 component="div"
-                className="flex-1 text-gray-700 uppercase font-semibold"
+                sx={{
+                  flex: "1",
+                  color: "rgb(55 65 81)",
+                  textTransform: "uppercase",
+                  fontWeight: "600",
+                }}
               >
                 Clean Youtube
               </Typography>

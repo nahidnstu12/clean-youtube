@@ -2,7 +2,6 @@ import axios from "axios";
 interface ItemProp {
   (playlistId: string, pageToken?: string, result?: []): any;
 }
-interface PlaylistProps {}
 const apikey_yt = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 
 export const getPlaylistItem: ItemProp = async (

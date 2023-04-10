@@ -14,7 +14,7 @@ interface IProps {
 }
 const PlaylistCard = ({ title, playlistArr, handleClick, icon }: IProps) => {
   return (
-    <ImageList gap={12} cols={3}>
+    <ImageList gap={12} cols={3} sx={{ mt: "-35px" }}>
       <ImageListItem key="Subheader" cols={3}>
         {/* @ts-ignore */}
         <ListSubheader

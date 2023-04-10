@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
-  const dispatch = useDispatch();
   const { items: recentItems } = useSelector(
     (state: any) => state?.recent || []
   );
@@ -11,8 +10,6 @@ const HomePage = () => {
     (state: any) => state?.favorites || []
   );
   const { data } = useSelector((state: any) => state?.playlists || []);
-
-  const [playlistId, setPlaylistId] = useState("");
 
   let favPlaylistArr = favItems
     ?.map((playlist: any) => {

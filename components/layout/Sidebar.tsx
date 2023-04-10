@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useEffect, useMemo } from "react";
 import { SIDEBAR_ENUMS } from "../../services/utils/enums";
+import ArchivePage from "../ui/ArchivePage";
 import HomePage from "../ui/HomePage";
 import PlaylistPage from "../ui/PlaylistsPage";
 import RecentPage from "../ui/RecentPage";
@@ -86,7 +87,6 @@ export default function Sidebar() {
             background: `${value === SIDEBAR_ENUMS.RECENT && "#3b82f680"}`,
           }}
         />
-        {/* <Stack className={"absolute bottom-4 w-full"}> */}
         <Tab
           icon={<ArchiveIcon />}
           label="Archived"
@@ -96,7 +96,6 @@ export default function Sidebar() {
             width: "100%",
             background: `${value === SIDEBAR_ENUMS.ARCHIVED && "#3b82f680"}`,
           }}
-          className={`${value === SIDEBAR_ENUMS.ARCHIVED && "bg-blue-200"}`}
         />
         {/* </Stack> */}
       </Tabs>
@@ -113,7 +112,7 @@ export default function Sidebar() {
         <RecentPage />
       </TabPanel>
       <TabPanel value={value} index={SIDEBAR_ENUMS.ARCHIVED}>
-        Upcoming Features
+        <ArchivePage />
       </TabPanel>
     </Box>
   );

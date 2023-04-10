@@ -20,7 +20,7 @@ const initialState: IState = {
 // Async thunk
 export const fetchPlaylist = createAsyncThunk(
   "playlist/fetchPlaylist",
-  async (playlistId: string, { getState, rejectWithValue }) => {
+  async (playlistId: string, { getState }) => {
     const state = getState();
 
     try {
