@@ -1,4 +1,3 @@
-import ArchiveIcon from "@mui/icons-material/Archive";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
@@ -11,17 +10,18 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useEffect, useMemo } from "react";
 import { SIDEBAR_ENUMS } from "../../services/utils/enums";
-import ArchivePage from "../ui/ArchivePage";
+import HowToUsePage from "../ui/HowToUsePage";
 import HomePage from "../ui/HomePage";
 import PlaylistPage from "../ui/PlaylistsPage";
 import RecentPage from "../ui/RecentPage";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 
 export default function Sidebar() {
   const router = useRouter();
   const [value, setValue] = React.useState<number>(SIDEBAR_ENUMS.HOME);
 
   const pageNames = useMemo(
-    () => ["home", "playlists", "favorites", "recent", "archived"],
+    () => ["home", "playlists", "favorites", "recent", "howtouse"],
     []
   );
 
@@ -88,13 +88,13 @@ export default function Sidebar() {
           }}
         />
         <Tab
-          icon={<ArchiveIcon />}
-          label="Archived"
+          icon={<TipsAndUpdatesIcon />}
+          label="How To Use"
           sx={{
             position: "absolute",
             bottom: "10px",
             width: "100%",
-            background: `${value === SIDEBAR_ENUMS.ARCHIVED && "#3b82f680"}`,
+            background: `${value === SIDEBAR_ENUMS.HOWTOUSE && "#3b82f680"}`,
           }}
         />
         {/* </Stack> */}
@@ -111,8 +111,8 @@ export default function Sidebar() {
       <TabPanel value={value} index={SIDEBAR_ENUMS.RECENT}>
         <RecentPage />
       </TabPanel>
-      <TabPanel value={value} index={SIDEBAR_ENUMS.ARCHIVED}>
-        <ArchivePage />
+      <TabPanel value={value} index={SIDEBAR_ENUMS.HOWTOUSE}>
+        <HowToUsePage />
       </TabPanel>
     </Box>
   );

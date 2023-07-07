@@ -3,7 +3,7 @@ export enum SIDEBAR_ENUMS {
   PLAYLISTS,
   FAVORITES,
   RECENT,
-  ARCHIVED,
+  HOWTOUSE,
 }
 
 export enum LAYOUT {

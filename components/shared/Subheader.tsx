@@ -19,7 +19,10 @@ export default function Subheader({ title, icon, handleClick }: IProps) {
           {title}
         </Typography>
         {icon || (
-          <HighlightOffIcon sx={{ color: "#777" }} onClick={handleClick} />
+          <HighlightOffIcon
+            sx={{ color: "#777", cursor: "pointer" }}
+            onClick={handleClick}
+          />
         )}
       </Stack>
     </>

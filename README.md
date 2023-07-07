@@ -6,6 +6,8 @@
 
 Clean YouTube is a platform designed for users who want to learn from YouTube without any distractions. This app allows users to watch playlists without being interrupted by suggested videos or other distractions. Clean YouTube has four main sections: Home, Playlists, Favorite, and Recent. In this documentation, we'll describe each section in detail.
 
+our focus is minimalist desktop design prioritizes simplicity and functionality, offering a clean and sleek aesthetic for easy navigation and content accessibility.
+
 <b>Home Page</b>
 
 The Home page displays the latest playlists added to Clean YouTube. Users can click on a playlist to go to the playlist page. Each playlist shows the playlist's name, thumbnail, and the number of videos in it.

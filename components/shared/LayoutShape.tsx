@@ -23,6 +23,7 @@ export default function LayoutShape() {
           width: "40px",
           height: "100px",
           border: isSidebarCollapse && "1px dashed #999",
+          cursor: "pointer",
         }}
         onClick={() => dispatch(toggleLayoutSidebar(!isSidebarCollapse))}
       />
@@ -31,6 +32,7 @@ export default function LayoutShape() {
         sx={{
           width: "100px",
           height: "100px",
+          cursor: "pointer",
           border: isDescriptionCollapse && "1px dashed #999",
         }}
         onClick={() =>
@@ -43,6 +45,7 @@ export default function LayoutShape() {
           width: "40px",
           height: "100px",
           border: isNotesCollapse && "1px dashed #999",
+          cursor: "pointer",
         }}
         onClick={() => dispatch(toggleLayoutNotes(!isNotesCollapse))}
       />
